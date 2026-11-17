@@ -12,16 +12,16 @@
       "shape": [10]
     }],
     "modelConfigs": {
-      "Fully connected (disc)": {
+      "Totalmente conectada (disc)": {
         "path": "mnist-fully-connected.json"
       },
-      "Fully connected (gen)": {
+      "Totalmente conectada (gen)": {
         "path": "gen-mnist-fully-connected.json"
       },
-      "Convolutional (disc)": {
+      "Convolucional (disc)": {
         "path": "mnist-conv.json"
       },
-      "Convolutional (gen)": {
+      "Convolucional (gen)": {
         "path": "gen-mnist-conv.json"
       }
     }
@@ -38,18 +38,18 @@
       "dataType": "uint8",
       "shape": [10]
     }],
-    "labelClassNames": ["T-shirt/top", "Trouser", "Pullover", "Dress", "Coat", "Sandal", "Shirt", "Sneaker", "Bag", "Ankle boot"],
+    "labelClassNames": ["Camiseta/top", "Calça", "Suéter", "Vestido", "Casaco", "Sandália", "Camisa", "Tênis", "Bolsa", "Bota"],
     "modelConfigs": {
-      "Fully connected (disc)": {
+      "Totalmente conectada (disc)": {
         "path": "mnist-fully-connected.json"
       },
-      "Fully connected (gen)": {
+      "Totalmente conectada (gen)": {
         "path": "gen-mnist-fully-connected.json"
       },
-      "Convolutional (disc)": {
+      "Convolucional (disc)": {
         "path": "mnist-conv.json"
       },
-      "Convolutional (gen)": {
+      "Convolucional (gen)": {
         "path": "gen-mnist-conv.json"
       }
     }
@@ -66,9 +66,9 @@
       "dataType": "uint8",
       "shape": [10]
     }],
-    "labelClassNames": ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"],
+    "labelClassNames": ["avião", "automóvel", "pássaro", "gato", "veado", "cachorro", "sapo", "cavalo", "navio", "caminhão"],
     "modelConfigs": {
-      "Convolutional (disc)": {
+      "Convolucional (disc)": {
         "path": "cifar10-conv.json"
       }
     }
