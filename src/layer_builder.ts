@@ -25,7 +25,8 @@ import {Array1D, Array2D, Array4D, conv_util, Graph, Initializer, NDArrayInitial
  */
 
 export type LayerName = 'Fully connected' | 'ReLU' | 'Convolution' |
-    'Max pool' | 'Reshape' | 'Flatten';
+    'Max pool' | 'Reshape' | 'Flatten' |
+    'Totalmente conectada' | 'Convolução' | 'Max pooling' | 'Remodelar (Reshape)' | 'Aplanar (Flatten)';
 
 /**
  * Creates a layer builder object.
@@ -40,21 +41,26 @@ export function getLayerBuilder(
   let layerBuilder: LayerBuilder;
   switch (layerName) {
     case 'Fully connected':
+    case 'Totalmente conectada':
       layerBuilder = new FullyConnectedLayerBuilder();
       break;
     case 'ReLU':
       layerBuilder = new ReLULayerBuilder();
       break;
     case 'Convolution':
+    case 'Convolução':
       layerBuilder = new Convolution2DLayerBuilder();
       break;
     case 'Max pool':
+    case 'Max pooling':
       layerBuilder = new MaxPoolLayerBuilder();
       break;
     case 'Reshape':
+    case 'Remodelar (Reshape)':
       layerBuilder = new ReshapeLayerBuilder();
       break;
     case 'Flatten':
+    case 'Aplanar (Flatten)':
       layerBuilder = new FlattenLayerBuilder();
       break;
     default:
@@ -108,7 +114,7 @@ export class FullyConnectedLayerBuilder implements LayerBuilder {
 
   getLayerParams(): LayerParam[] {
     return [{
-      label: 'Hidden units',
+      label: 'Unidades ocultas',
       initialValue: (inputShape: number[]) => 10,
       type: 'number',
       min: 1,
@@ -174,7 +180,7 @@ export class FullyConnectedLayerBuilder implements LayerBuilder {
 
   validate(inputShape: number[]) {
     if (inputShape.length !== 1) {
-      return ['Input shape must be a Array1D.'];
+      return ['O formato de entrada deve ser um Array1D.'];
     }
     return null;
   }
@@ -221,7 +227,7 @@ export class Convolution2DLayerBuilder implements LayerBuilder {
   getLayerParams(): LayerParam[] {
     return [
       {
-        label: 'Field size',
+        label: 'Tamanho do campo',
         initialValue: (inputShape: number[]) => 3,
         type: 'number',
         min: 1,
@@ -230,7 +236,7 @@ export class Convolution2DLayerBuilder implements LayerBuilder {
         getValue: () => this.fieldSize
       },
       {
-        label: 'Stride',
+        label: 'Passo (stride)',
         initialValue: (inputShape: number[]) => 1,
         type: 'number',
         min: 1,
@@ -239,7 +245,7 @@ export class Convolution2DLayerBuilder implements LayerBuilder {
         getValue: () => this.stride
       },
       {
-        label: 'Zero pad',
+        label: 'Preenchimento com zeros',
         initialValue: (inputShape: number[]) => 0,
         type: 'number',
         min: 0,
@@ -248,7 +254,7 @@ export class Convolution2DLayerBuilder implements LayerBuilder {
         getValue: () => this.zeroPad
       },
       {
-        label: 'Output depth',
+        label: 'Profundidade de saída',
         initialValue: (inputShape: number[]) =>
                           this.outputDepth != null ? this.outputDepth : 1,
         type: 'number',
@@ -317,7 +323,7 @@ export class Convolution2DLayerBuilder implements LayerBuilder {
 
   validate(inputShape: number[]) {
     if (inputShape.length !== 3) {
-      return ['Input shape must be a Array3D.'];
+      return ['O formato de entrada deve ser um Array3D.'];
     }
     return null;
   }
@@ -332,7 +338,7 @@ export class MaxPoolLayerBuilder implements LayerBuilder {
   getLayerParams(): LayerParam[] {
     return [
       {
-        label: 'Field size',
+        label: 'Tamanho do campo',
         initialValue: (inputShape: number[]) => 3,
         type: 'number',
         min: 1,
@@ -341,7 +347,7 @@ export class MaxPoolLayerBuilder implements LayerBuilder {
         getValue: () => this.fieldSize
       },
       {
-        label: 'Stride',
+        label: 'Passo (stride)',
         initialValue: (inputShape: number[]) => 1,
         type: 'number',
         min: 1,
@@ -350,7 +356,7 @@ export class MaxPoolLayerBuilder implements LayerBuilder {
         getValue: () => this.stride
       },
       {
-        label: 'Zero pad',
+        label: 'Preenchimento com zeros',
         initialValue: (inputShape: number[]) => 0,
         type: 'number',
         min: 0,
@@ -386,7 +392,7 @@ export class MaxPoolLayerBuilder implements LayerBuilder {
 
   validate(inputShape: number[]) {
     if (inputShape.length !== 3) {
-      return ['Input shape must be a Array3D.'];
+      return ['O formato de entrada deve ser um Array3D.'];
     }
     return null;
   }
@@ -397,7 +403,7 @@ export class ReshapeLayerBuilder implements LayerBuilder {
   outputShape: number[];
   getLayerParams() {
     return [{
-      label: 'Shape (comma separated)',
+      label: 'Formato (separado por vírgulas)',
       initialValue: (inputShape: number[]) => inputShape.join(', '),
       type: 'text' as 'text',
       setValue: (value: string) => this.outputShape =
@@ -431,7 +437,7 @@ export class ReshapeLayerBuilder implements LayerBuilder {
     const outputSize = util.sizeFromShape(this.outputShape);
     if (inputSize !== outputSize) {
       return [
-        `Input size (${inputSize}) must match output size (${outputSize}).`
+        `O tamanho de entrada (${inputSize}) deve coincidir com o tamanho de saída (${outputSize}).`
       ];
     }
     return null;

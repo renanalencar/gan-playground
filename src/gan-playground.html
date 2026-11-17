@@ -287,13 +287,13 @@ body {
 <dom-module id="gan-playground">
 <template>
 <header>
-  <h1 align="center">GAN Playground - Explore Generative Adversarial Nets in your Browser</h1>
+  <h1 align="center">GAN Playground - Explore Redes Neurais Adversariais Geradoras no seu Navegador</h1>
 </header>
 <div id="gan-playground-container">
   <div id="dataset" class="ink-panel">
-    <div class="title">DATA</div>
+    <div class="title">DADOS</div>
     <div class="dataset-dropdown-container">
-      <paper-dropdown-menu no-animations label="Dataset" id="dataset-dropdown" disabled="[[!datasetDownloaded]]">
+      <paper-dropdown-menu no-animations label="Conjunto de dados" id="dataset-dropdown" disabled="[[!datasetDownloaded]]">
         <paper-listbox attr-for-selected="value" class="dropdown-content" selected="{{selectedDatasetName}}" slot="dropdown-content">
           <template is="dom-repeat" items="[[datasetNames]]">
             <paper-item value="[[item]]" label="[[item]]">
@@ -303,7 +303,7 @@ body {
         </paper-listbox>
       </paper-dropdown-menu>
 
-      <paper-dropdown-menu no-animations label="Model - discriminator" id="model-dropdown" disabled="[[!datasetDownloaded]]">
+      <paper-dropdown-menu no-animations label="Modelo - discriminador" id="model-dropdown" disabled="[[!datasetDownloaded]]">
         <paper-listbox attr-for-selected="value" class="dropdown-content" selected="{{selectedModelName}}" slot="dropdown-content">
           <template is="dom-repeat" items="[[modelNames]]">
             <paper-item value="[[item]]" label="[[item]]">
@@ -313,7 +313,7 @@ body {
         </paper-listbox>
       </paper-dropdown-menu>
 
-      <paper-dropdown-menu no-animations label="Model - generator" id="gen-model-dropdown" disabled="[[!datasetDownloaded]]">
+      <paper-dropdown-menu no-animations label="Modelo - gerador" id="gen-model-dropdown" disabled="[[!datasetDownloaded]]">
         <paper-listbox attr-for-selected="value" class="dropdown-content" selected="{{genSelectedModelName}}" slot="dropdown-content">
           <template is="dom-repeat" items="[[genModelNames]]">
             <paper-item value="[[item]]" label="[[item]]">
@@ -323,23 +323,23 @@ body {
         </paper-listbox>
       </paper-dropdown-menu>
 
-      <div class="subtitle">Hyperparameters</div>
-      <paper-input no-animations label="Learning Rate - discriminator" id="disc-learning-rate-input" disabled="[[!datasetDownloaded]]" value={{discLearningRate}}>
+      <div class="subtitle">Hiperparâmetros</div>
+      <paper-input no-animations label="Taxa de aprendizado - discriminador" id="disc-learning-rate-input" disabled="[[!datasetDownloaded]]" value={{discLearningRate}}>
       </paper-input>
 
-      <paper-input no-animations label="Momentum - discriminator" id="disc-momentum" hidden="[[!discNeedMomentum]]" value={{discMomentum}}>
+      <paper-input no-animations label="Momento - discriminador" id="disc-momentum" hidden="[[!discNeedMomentum]]" value={{discMomentum}}>
       </paper-input>
 
-      <paper-input no-animations label="Gamma - discriminator" id="disc-gamma" hidden="[[!discNeedGamma]]" value={{discGamma}}>
+      <paper-input no-animations label="Gamma - discriminador" id="disc-gamma" hidden="[[!discNeedGamma]]" value={{discGamma}}>
       </paper-input>
 
-      <paper-input no-animations label="Beta1 - discriminator" id="disc-beta1" hidden="[[!discNeedBeta]]" value={{discBeta1}}>
+      <paper-input no-animations label="Beta1 - discriminador" id="disc-beta1" hidden="[[!discNeedBeta]]" value={{discBeta1}}>
       </paper-input>
 
-      <paper-input no-animations label="Beta2 - discriminator" id="disc-beta2" hidden="[[!discNeedBeta]]" value={{discBeta2}}>
+      <paper-input no-animations label="Beta2 - discriminador" id="disc-beta2" hidden="[[!discNeedBeta]]" value={{discBeta2}}>
       </paper-input>
 
-      <paper-dropdown-menu no-animations label="Optimizer - discriminator" id="disc-optimizer-dropdown" disabled="[[!datasetDownloaded]]">
+      <paper-dropdown-menu no-animations label="Otimizador - discriminador" id="disc-optimizer-dropdown" disabled="[[!datasetDownloaded]]">
         <paper-listbox attr-for-selected="value" class="dropdown-content" selected="{{discSelectedOptimizerName}}" slot="dropdown-content">
           <template is="dom-repeat" items="[[optimizerNames]]">
             <paper-item value="[[item]]" label="[[item]]">
@@ -349,22 +349,22 @@ body {
         </paper-listbox>
       </paper-dropdown-menu>
 
-      <paper-input no-animations label="Learning Rate - generator" id="gen-learning-rate-input" disabled="[[!datasetDownloaded]]" value={{genLearningRate}}>
+      <paper-input no-animations label="Taxa de aprendizado - gerador" id="gen-learning-rate-input" disabled="[[!datasetDownloaded]]" value={{genLearningRate}}>
       </paper-input>
 
-      <paper-input no-animations label="Momentum - generator" id="gen-momentum" hidden="[[!genNeedMomentum]]" value={{genMomentum}}>
+      <paper-input no-animations label="Momento - gerador" id="gen-momentum" hidden="[[!genNeedMomentum]]" value={{genMomentum}}>
       </paper-input>
 
-      <paper-input no-animations label="Gamma - generator" id="gen-gamma" hidden="[[!genNeedGamma]]" value={{genGamma}}>
+      <paper-input no-animations label="Gamma - gerador" id="gen-gamma" hidden="[[!genNeedGamma]]" value={{genGamma}}>
       </paper-input>
 
-      <paper-input no-animations label="Beta1 - generator" id="gen-beta1" hidden="[[!genNeedBeta]]" value={{genBeta1}}>
+      <paper-input no-animations label="Beta1 - gerador" id="gen-beta1" hidden="[[!genNeedBeta]]" value={{genBeta1}}>
       </paper-input>
 
-      <paper-input no-animations label="Beta2 - generator" id="gen-beta2" hidden="[[!genNeedBeta]]" value={{genBeta2}}>
+      <paper-input no-animations label="Beta2 - gerador" id="gen-beta2" hidden="[[!genNeedBeta]]" value={{genBeta2}}>
       </paper-input>
 
-      <paper-dropdown-menu no-animations label="Optimizer - generator" id="gen-optimizer-dropdown" disabled="[[!datasetDownloaded]]">
+      <paper-dropdown-menu no-animations label="Otimizador - gerador" id="gen-optimizer-dropdown" disabled="[[!datasetDownloaded]]">
         <paper-listbox attr-for-selected="value" class="dropdown-content" selected="{{genSelectedOptimizerName}}" slot="dropdown-content">
           <template is="dom-repeat" items="[[optimizerNames]]">
             <paper-item value="[[item]]" label="[[item]]">
@@ -374,49 +374,49 @@ body {
         </paper-listbox>
       </paper-dropdown-menu>
 
-      <paper-input no-animations label="Batch Size" id="batch-size" disabled="[[!datasetDownloaded]]" value={{batchSize}}>
+      <paper-input no-animations label="Tamanho do lote (Batch Size)" id="batch-size" disabled="[[!datasetDownloaded]]" value={{batchSize}}>
       </paper-input>
 
       <div hidden$="[[isValid]]" class="model-error">
         <div hidden$="[[!datasetDownloaded]]"">
           <paper-tooltip animation-delay="0" fit-to-visible-bounds>
-            Make sure your shapes flow!"
+            Certifique-se de que os formatos coincidem!
           </paper-tooltip>
           <paper-icon-button icon="info-outline" class="model-error-info"></paper-icon-button>
-          <div class="invalid-model">Invalid model</div>
+          <div class="invalid-model">Modelo inválido</div>
         </div>
       </div>
       <div class="train-button-container" hidden$="[[!isValid]]">
-        <paper-button class="button" hidden$="[[!datasetDownloaded]]" raised id="train">Train</paper-button>
-        <paper-button class="button" hidden$="[[!isTraining(applicationState)]]" raised id="stop">Stop</paper-button>
+        <paper-button class="button" hidden$="[[!datasetDownloaded]]" raised id="train">Treinar</paper-button>
+        <paper-button class="button" hidden$="[[!isTraining(applicationState)]]" raised id="stop">Parar</paper-button>
       </div>
     </div>
     <div class="progress-container" hidden$="[[datasetDownloaded]]">
       <paper-progress indeterminate disabled="[[datasetDownloaded]]"></paper-progress>
     </div>
     <div class="dataset-stats" hidden$="[[!showDatasetStats]]">
-      <paper-dropdown-menu no-animations label="Normalization" id="normalization-dropdown" hidden$="[[!datasetDownloaded]]">
+      <paper-dropdown-menu no-animations label="Normalização" id="normalization-dropdown" hidden$="[[!datasetDownloaded]]">
         <paper-listbox class="dropdown-content" selected="[[selectedNormalizationOption]]" slot="dropdown-content">
           <paper-item>[-1, 1]</paper-item>
           <paper-item>[0, 1]</paper-item>
-          <paper-item>None</paper-item>
+          <paper-item>Nenhum</paper-item>
       </paper-dropdown-menu>
       <div class="train-stats data-stats">
-        <div class="data-stats-label">Statistics</div>
+        <div class="data-stats-label">Estatísticas</div>
         <div class="stat">
-          <div class="stat-label">Examples</div>
+          <div class="stat-label">Exemplos</div>
           <div class="stat-value">[[statsExampleCount]]</div>
         </div>
         <div class="stat">
-          <div class="stat-label">Input shape</div>
+          <div class="stat-label">Formato de entrada</div>
           <div class="stat-value">[[statsInputShapeDisplay]]</div>
         </div>
         <div class="stat">
-          <div class="stat-label">Label shape</div>
+          <div class="stat-label">Formato do rótulo</div>
           <div class="stat-value">[[statsLabelShapeDisplay]]</div>
         </div>
         <div class="stat">
-          <div class="stat-label">Pixel range</div>
+          <div class="stat-label">Intervalo de pixels</div>
           <div class="stat-value">[[statsInputRange]]</div>
         </div>
       </div>
@@ -437,65 +437,65 @@ body {
     </div>
     -->
     <div class="two-way-toggle">
-      <span>Environment: CPU</span>
+      <span>Ambiente: CPU</span>
       <paper-toggle-button id="environment-toggle" checked>GPU</paper-toggle-button>
     </div>
   </div>
   <div id="model" class="ink-panel">
-    <div class="title">DISCRIMINATOR</div>
+    <div class="title">DISCRIMINADOR</div>
     <div class="panel-content">
       <div id="layers">
-        <model-layer class="layer" id="input-layer" layer-name="Input Image" is-static></model-layer>
+        <model-layer class="layer" id="input-layer" layer-name="Imagem de Entrada" is-static></model-layer>
         <div id="hidden-layers"></div>
         <model-layer class="layer" id="cost-layer" layer-name="Softmax Cross-Entropy" is-static></model-layer>
-        <model-layer class="layer" id="output-layer" layer-name="Label" is-static></model-layer>
+        <model-layer class="layer" id="output-layer" layer-name="Rótulo" is-static></model-layer>
       </div>
       <div class="button-container">
-        <paper-button class="button" raised id="add-layer">Add a layer</paper-button><br>
+        <paper-button class="button" raised id="add-layer">Adicionar camada</paper-button><br>
       </div>
     </div>
   </div>
 
   <div id="gen-model" class="ink-panel">
-    <div class="title">GENERATOR</div>
+    <div class="title">GERADOR</div>
     <div class="panel-content">
       <div id="gen-layers">
-        <model-layer class="layer" id="gen-input-layer" layer-name="Generator Random Vector" is-static></model-layer>
+        <model-layer class="layer" id="gen-input-layer" layer-name="Vetor Aleatório do Gerador" is-static></model-layer>
         <div id="gen-hidden-layers"></div>
         <model-layer class="layer" id="gen-cost-layer" layer-name="Tanh" is-static></model-layer>
-        <model-layer class="layer" id="gen-output-layer" layer-name="Output Image" is-static></model-layer>
+        <model-layer class="layer" id="gen-output-layer" layer-name="Imagem de Saída" is-static></model-layer>
       </div>
       <div class="button-container">
-        <paper-button class="button" raised id="gen-add-layer">Add a layer</paper-button><br>
+        <paper-button class="button" raised id="gen-add-layer">Adicionar camada</paper-button><br>
       </div>
     </div>
   </div>
 
   <div id="real" class="ink-panel">
-    <div class="title">REAL IMAGES</div>
+    <div class="title">IMAGENS REAIS</div>
     <div class="panel-content" hidden$="[[!isValid]]">
-      <div class="examples-sec inference-stats-message">Inferences/sec: [[inferencesPerSec]]</div>
-      <div class="inference-stats-message">Inference duration: [[inferenceDuration]]ms</div>
+      <div class="examples-sec inference-stats-message">Inferências/seg: [[inferencesPerSec]]</div>
+      <div class="inference-stats-message">Duração da inferência: [[inferenceDuration]]ms</div>
       <div id="real-container"></div>
     </div>
   </div>
 
   <div id="generated" class="ink-panel">
-    <div class="title">GENERATED IMAGES</div>
+    <div class="title">IMAGENS GERADAS</div>
     <div class="panel-content" hidden$="[[!isValid]]">
-      <div class="examples-sec inference-stats-message">Generations/sec: [[generationsPerSec]]</div>
-      <div class="inference-stats-message">Generation duration: [[generationDuration]]ms</div>
+      <div class="examples-sec inference-stats-message">Gerações/seg: [[generationsPerSec]]</div>
+      <div class="inference-stats-message">Duração da geração: [[generationDuration]]ms</div>
       <div id="generated-container"></div>
     </div>
   </div>
 
   <div id="train-stats" class="ink-panel">
-    <div class="title">TRAIN STATS</div>
+    <div class="title">ESTATÍSTICAS DE TREINO</div>
     <div class="panel-content">
       <div hidden$="[[!showTrainStats]]">
-        <div class="examples-sec train-stats-message">Examples/sec: [[examplesPerSec]]</div>
-        <div class="train-stats-message">Examples trained: [[examplesTrained]]</div>
-        <div class="train-stats-message">Total time: [[totalTimeSec]] sec.</div>
+        <div class="examples-sec train-stats-message">Exemplos/seg: [[examplesPerSec]]</div>
+        <div class="train-stats-message">Exemplos treinados: [[examplesTrained]]</div>
+        <div class="train-stats-message">Tempo total: [[totalTimeSec]] s</div>
         <div class="chart-container">
           <canvas id="cost-chart" width="300" height="225"></canvas>
           <br>
@@ -511,43 +511,43 @@ body {
 
 <article id="article-text">
   <div class="l--body">
-    <h2>Welcome to GAN Playground</h2>
-    <p>GAN Playground lets you play around with Generative Adversarial Networks right in your browser. Currently, it contains three built-in datasets: MNIST, Fashion MNIST, and CIFAR-10.</p>
-    <p>GAN Playground provides you the ability to set your models' hyperparameters and build up your discriminator and generator layer-by-layer. You can observe the network learn in real time as the generator produces more and more realistic images, or more likely, gets stuck in failure modes such as mode collapse.</p>
+    <h2>Bem-vindo ao GAN Playground</h2>
+    <p>O GAN Playground permite que você experimente Redes Neurais Adversariais Geradoras diretamente no seu navegador. Atualmente, ele contém três conjuntos de dados integrados: MNIST, Fashion MNIST e CIFAR-10.</p>
+    <p>O GAN Playground oferece a você a capacidade de configurar os hiperparâmetros dos seus modelos e construir o seu discriminador e gerador camada por camada. Você pode observar a rede aprendendo em tempo real à medida que o gerador produz imagens cada vez mais realistas ou, mais frequentemente, fica preso em falhas de treinamento como o colapso de modo (mode collapse).</p>
   </div>
 
   <div class="l--body">
-    <h2>What are Generative Adversarial Networks?</h2>
-    <p>From Wikipedia, "Generative Adversarial Networks, or GANs, are a class of artifical intelligence algorithms used in unsupervised machine learning, implemented by a system of two neural networks contesting with each other in a zero-sum game framework. They were introduced by Ian Goodfellow et al. in 2014."</p>
-    <p>In my own words, GANs are composed of two neural networks, each one trying to outcompete the other. The <b>discriminator</b> tries to figure out whether a given image is real or synthetically generated by the other neural network. The <b>generator</b> attempts to output images that are indistinguishable from real ones in an attempt to fool the discriminator. The hope is that the generator learns enough to create realistic images that can <i>fool humans</i>.
-    If you want more information, there are tons of great resources on the internet that give a good introduction to GANs. Here's the <a href="https://arxiv.org/abs/1406.2661">original paper on GANs</a>.</p>.
+    <h2>O que são Redes Neurais Adversariais Geradoras?</h2>
+    <p>Da Wikipédia: "As redes neurais adversariais geradoras (GANs, do inglês <i>Generative Adversarial Networks</i>) são uma classe de algoritmos de inteligência artificial usados em aprendizado de máquina não supervisionado, implementadas por um sistema de duas redes neurais que competem entre si em uma estrutura de jogo de soma zero. Elas foram introduzidas por Ian Goodfellow et al. em 2014."</p>
+    <p>Em minhas próprias palavras, as GANs são compostas por duas redes neurais, cada uma tentando superar a outra. O <b>discriminador</b> tenta determinar se uma determinada imagem é real ou gerada sinteticamente pela outra rede neural. O <b>gerador</b> tenta produzir imagens indistinguíveis das reais na tentativa de enganar o discriminador. A expectativa é que o gerador aprenda o suficiente para criar imagens realistas capazes de <i>enganar humanos</i>.
+    Se você quiser mais informações, existem muitos recursos excelentes na internet com boas introduções a GANs. Aqui está o <a href="https://arxiv.org/abs/1406.2661">artigo original sobre GANs</a>.</p>
   </div>
 
   <div class="l--body">
-    <h2>Why did you make this?</h2>
-    <p>My hope is that this project gives beginners a bit of exposure in training GANs with as little setup as possible. The easiest way to do this is through the browser, and with deeplearn.JS, it's now finally possible. In fact, when I started this project, I didn't have any experience with GANs, and my target audience was myself!</p>
+    <h2>Por que você criou isto?</h2>
+    <p>Minha esperança é que este projeto proporcione a iniciantes um contato prático com o treinamento de GANs com o mínimo de configuração possível. A maneira mais fácil de fazer isso é pelo navegador e, com o deeplearn.JS, isso finalmente se tornou possível. Na verdade, quando comecei este projeto, eu não tinha experiência prévia com GANs, e meu público-alvo inicial era eu mesmo!</p>
   </div>
 
   <div class="l--body">
-    <h2>How long should I wait / what's the best set of parameters to see realistic images?</h2>
-    <p>To be honest, I'm not sure. GANs are notoriously hard to train, and even I haven't found the right set of parameters and layers for this demo that'd produce very realistic images <i>consistently</i>. The default parameters are still prone to randomly failing... Either way, if you <i>do</i> find a good set of parameters and layers, please <a href="https://github.com/reiinakano/gan-playground/issues">file an issue</a> or <a href="https://github.com/reiinakano/gan-playground/pulls">submit a pull request</a>, and I'll add it to this demo. I challenge you to get good generated images on CIFAR-10.</p>
-    <p>On a related note, those with some background in neural networks will note that there are a lot of missing operations that are crucial for more stable GANs e.g. batch normalization, transpose convolutions. So far, deeplearn.JS does not have these operations built in to their Training API, but I'll add them as soon as possible.</p>
+    <h2>Quanto tempo devo esperar / qual é o melhor conjunto de parâmetros para ver imagens realistas?</h2>
+    <p>Para ser sincero, não tenho certeza. GANs são notoriamente difíceis de treinar e nem mesmo eu encontrei a combinação ideal de parâmetros e camadas nesta demonstração que produza imagens muito realistas <i>consistentemente</i>. Os parâmetros padrão ainda estão sujeitos a falhas aleatórias... De qualquer forma, se você <i>encontrar</i> um bom conjunto de parâmetros e camadas, por favor <a href="https://github.com/reiinakano/gan-playground/issues">abra uma issue</a> ou <a href="https://github.com/reiinakano/gan-playground/pulls">envie um pull request</a>, e eu o adicionarei a esta demonstração. Eu desafio você a obter boas imagens geradas no CIFAR-10.</p>
+    <p>Em uma observação relacionada, aqueles com alguma experiência em redes neurais notarão que faltam muitas operações que são cruciais para GANs mais estáveis, como normalização em lote (batch normalization) e convoluções transpostas. Até o momento, o deeplearn.JS não possui essas operações integradas à sua API de Treinamento, mas irei adicioná-las assim que possível.</p>
   </div>
 
   <div class="l--body">
-    <h2>This looks like the deeplearn.JS Model Builder demo</h2>
-    <p>Yup, this is pretty much <a href="http://deeplearnjs.org/demos/model-builder/">deeplearn.JS's Model Builder demo</a> repurposed for training GANs! I just ripped out the parts I didn't need and replaced it with the parts I do need.</p>
+    <h2>Isto se parece com a demonstração Model Builder do deeplearn.JS</h2>
+    <p>Sim, isto é essencialmente a <a href="http://deeplearnjs.org/demos/model-builder/">demonstração Model Builder do deeplearn.JS</a> adaptada para o treinamento de GANs! Eu apenas removi as partes que não precisava e adicionei as partes necessárias.</p>
   </div>
 
   <div class="l--body">
-    <h2>Is the code open source?</h2>
-    <p>Yup! Visit <a href="https://github.com/reiinakano/gan-playground">https://github.com/reiinakano/gan-playground</a> to examine the code. Also, feel free to submit any issues or pull requests to the repository as well.</p>
+    <h2>O código é de código aberto?</h2>
+    <p>Sim! Acesse <a href="https://github.com/reiinakano/gan-playground">https://github.com/reiinakano/gan-playground</a> para examinar o código. Além disso, sinta-se à vontade para enviar issues ou pull requests para o repositório.</p>
   </div>
 
   <div class="l--body">
-    <h2>Credits</h2>
+    <h2>Créditos</h2>
     <p>
-      This demo was put together by Reiichiro Nakano and was repurposed from <a href="http://deeplearnjs.org/demos/model-builder/">deeplearn.JS's Model Builder demo</a>. Shout out to the awesome <a href="http://deeplearnjs.org">deeplearn.JS</a> library and of course to Ian Goodfellow et al.
+      Esta demonstração foi desenvolvida por Reiichiro Nakano e foi adaptada da <a href="http://deeplearnjs.org/demos/model-builder/">demonstração Model Builder do deeplearn.JS</a>. Um agradecimento especial à incrível biblioteca <a href="http://deeplearnjs.org">deeplearn.JS</a> e, claro, a Ian Goodfellow et al.
     </p>
   </div>
 </article>

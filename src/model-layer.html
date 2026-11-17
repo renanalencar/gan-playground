@@ -107,11 +107,11 @@ paper-icon-button[active] {
     </div>
 
     <div hidden$="[[isStatic]]">
-      <paper-dropdown-menu no-animations label="Op type">
+      <paper-dropdown-menu no-animations label="Tipo de operação">
         <paper-listbox attr-for-selected="value" class="dropdown-content" selected="{{selectedLayerName}}" slot="dropdown-content">
-          <template is="dom-repeat" items="[[layerNames]]">
-            <paper-item value="[[item]]" label="[[item]]">
-              [[item]]
+          <template is="dom-repeat" items="[[layerItems]]">
+            <paper-item value="[[item.name]]" label="[[item.displayName]]">
+              [[item.displayName]]
             </paper-item>
           </template>
         </paper-listbox>

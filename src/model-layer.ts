@@ -23,6 +23,11 @@ import {LayerBuilder, LayerName, LayerWeightsDict} from './layer_builder';
 import {GANPlayground} from './gan-playground';
 import * as model_builder_util from './model_builder_util';
 
+export interface LayerItem {
+  name: LayerName;
+  displayName: string;
+}
+
 // tslint:disable-next-line:variable-name
 export let ModelLayerPolymer: new () => PolymerHTMLElement = PolymerElement({
   is: 'model-layer',
@@ -32,6 +37,7 @@ export let ModelLayerPolymer: new () => PolymerHTMLElement = PolymerElement({
     outputShapeDisplay: String,
     isStatic: {type: Boolean, value: false},
     layerNames: Array,
+    layerItems: Array,
     selectedLayerName: String,
     hasError: {type: Boolean, value: false},
     errorMessages: Array,
@@ -43,6 +49,7 @@ export class ModelLayer extends ModelLayerPolymer {
   inputShapeDisplay: string;
   outputShapeDisplay: string;
   private layerNames: LayerName[];
+  private layerItems: LayerItem[];
   private selectedLayerName: LayerName;
   private hasError: boolean;
   private errorMessages: string[];
@@ -61,6 +68,14 @@ export class ModelLayer extends ModelLayerPolymer {
         this.querySelector('.param-container') as HTMLDivElement;
     this.layerNames = [
       'Fully connected', 'ReLU', 'Convolution', 'Max pool', 'Reshape', 'Flatten'
+    ];
+    this.layerItems = [
+      {name: 'Fully connected', displayName: 'Totalmente conectada'},
+      {name: 'ReLU', displayName: 'ReLU'},
+      {name: 'Convolution', displayName: 'Convolução'},
+      {name: 'Max pool', displayName: 'Max pooling'},
+      {name: 'Reshape', displayName: 'Remodelar (Reshape)'},
+      {name: 'Flatten', displayName: 'Aplanar (Flatten)'}
     ];
     this.inputShape = inputShape;
     this.buildParamsUI('Fully connected', this.inputShape);
@@ -87,7 +102,7 @@ export class ModelLayer extends ModelLayerPolymer {
     const validationErrors = this.layerBuilder.validate(this.inputShape);
     if (validationErrors != null) {
       for (let i = 0; i < validationErrors.length; i++) {
-        errors.push('Error: ' + validationErrors[i]);
+        errors.push('Erro: ' + validationErrors[i]);
       }
     }
 

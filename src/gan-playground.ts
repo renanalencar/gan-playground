@@ -861,8 +861,8 @@ export class GANPlayground extends GANPlaygroundPolymer {
   }
 
   private populateModelDropdown() {
-    const modelNames = ['Custom'];
-    const genModelNames = ['Custom'];
+    const modelNames = ['Personalizado'];
+    const genModelNames = ['Personalizado'];
 
     const modelConfigs =
         this.xhrDatasetConfigs[this.selectedDatasetName].modelConfigs;
@@ -886,7 +886,7 @@ export class GANPlayground extends GANPlaygroundPolymer {
 
   private updateSelectedModel(modelName: string, which: string) {
     this.removeAllLayers(which);
-    if (modelName === 'Custom') {
+    if (modelName === 'Personalizado' || modelName === 'Custom') {
       // TODO(nsthorat): Remember the custom layers.
       return;
     }
@@ -948,21 +948,21 @@ export class GANPlayground extends GANPlaygroundPolymer {
       this.costChart.destroy();
     }
     this.costChart =
-        this.createChart('cost-chart', 'Discriminator Cost', this.costChartData, 0);
+        this.createChart('cost-chart', 'Custo do discriminador', this.costChartData, 0);
 
     if (this.accuracyChart != null) {
       this.accuracyChart.destroy();
     }
     this.accuracyChartData = [];
     this.accuracyChart = this.createChart(
-        'accuracy-chart', 'Generator Cost', this.accuracyChartData, 0);
+        'accuracy-chart', 'Custo do gerador', this.accuracyChartData, 0);
 
     if (this.examplesPerSecChart != null) {
       this.examplesPerSecChart.destroy();
     }
     this.examplesPerSecChartData = [];
     this.examplesPerSecChart = this.createChart(
-        'examplespersec-chart', 'Examples/sec', this.examplesPerSecChartData,
+        'examplespersec-chart', 'Exemplos/seg', this.examplesPerSecChartData,
         0);
   }
 
